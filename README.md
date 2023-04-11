@@ -6,3 +6,6 @@ La seguridad vial se presenta como una de las principales preocupaciones de form
 Este debe de ser un sistema de viable implementación y competente, con un procesamiento de imagen en tiempo real empleando una cámara o vídeo como entrada. Debe detectar los obstáculos de la vía como coches, autobuses, motocicletas y señales de tráfico garantizando la seguridad de los pasajeros y otorgándoles la máxima información del entorno. El sistema de reconocimiento puede ser empleado en una variedad de aplicaciones, desde sistemas de asistencia al conductor hasta sistemas de seguridad de los vehículos autónomos. 
 
 Para lograr este objetivo, se empleará una combinación de técnicas de procesamiento de imágenes y aprendizaje automático. Se entrenará un modelo de machine learning empleando una base de datos de señales de tráfico a detectar. Para ello, se emplea el lenguaje de programación Python y algunas bibliotecas, como OpenCV.  
+
+![image](https://user-images.githubusercontent.com/43622417/231250532-02b2c5cf-36b3-427a-8807-6cbad20c3554.png)
+
