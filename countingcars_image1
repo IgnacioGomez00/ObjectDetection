@@ -1,0 +1,39 @@
+#Importar librerias necesarias
+import cv2
+
+#Lectura de imagen .png y selección de archivos Haar
+img=cv2.imread(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\images\CountingCars_Image1.png")
+cars = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\car.xml")
+
+
+#Definir variables
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+color_green = (0,255,0) 
+color_yellow = (0,255,255)
+
+#Modelo de Haar Cascade
+cars_scaled = cars.detectMultiScale(gray, 1.1 , 2)
+
+if len(cars_scaled) == 0:
+    print ("No cars found")
+  
+else:
+	print (cars_scaled)
+	print ("Number of cars detected: " + str(cars_scaled.shape[0]))
+
+	#Dibuja rectangulo en las coordenadas del objeto y texto encima del rectangulo identificando su clase
+	for (x,y,w,h) in cars_scaled:
+		cv2.rectangle(img, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(img, "car", (x,y-5), 1, 1.2, color_yellow, 2)
+
+	#Rectangulo contador de vehiculos
+	cv2.rectangle(img, ((0,img.shape[0] -25)),(260, img.shape[0]), (255,255,255), -1)
+	cv2.putText(img, (" Number of cars detected: " + str(cars_scaled.shape[0])), (0,img.shape[0] -10), 
+	     cv2.FONT_HERSHEY_TRIPLEX, 0.5,  (0,0,0), 1)
+	
+	#Imagen por pantalla solo si hay coches
+	cv2.imshow("Image with cars", img)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
