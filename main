@@ -1,0 +1,117 @@
+import sys
+from Menu import *
+from PyQt5 import QtCore
+from PyQt5.QtCore import QPropertyAnimation
+from PyQt5 import QtCore, QtWidgets
+
+class MiApp(QtWidgets.QMainWindow):
+	def __init__(self):
+		super().__init__()
+		self.ui = Ui_MainWindow() 
+		self.ui.setupUi(self)
+
+		#Abrir imagenes clicando en primer boton
+		self.ui.bt_cero.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_uno))
+		self.ui.bt_cero.clicked.connect(self.mover_menu)
+		self.ui.pushButton.clicked.connect(self.CountingCars1)
+		self.ui.pushButton_2.clicked.connect(self.CountingCars2)
+		self.ui.pushButton_3.clicked.connect(self.CountingCars3)
+		self.ui.pushButton_4.clicked.connect(self.CountingCars4)
+
+		#Abrir videos clicando en segundo boton
+		self.ui.bt_uno.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_dos))
+		self.ui.bt_uno.clicked.connect(self.mover_menu)
+		self.ui.pushButton_5.clicked.connect(self.CarsDetector1)
+		self.ui.pushButton_6.clicked.connect(self.CarsDetector2)
+		self.ui.pushButton_7.clicked.connect(self.CarsDetector3)
+		self.ui.pushButton_8.clicked.connect(self.CarsDetector4)
+
+		#Abrir videos clicando en tercer boton
+		self.ui.bt_dos.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_tres))
+		self.ui.bt_dos.clicked.connect(self.mover_menu)
+		self.ui.pushButton_9.clicked.connect(self.SignDetector1)
+		self.ui.pushButton_10.clicked.connect(self.SignDetector2)
+		self.ui.pushButton_11.clicked.connect(self.SignDetector3)
+		self.ui.pushButton_12.clicked.connect(self.SignDetector4)
+
+		#Abrir imagenes clicando en cuarto boton
+		self.ui.bt_tres.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_cuatro))
+		self.ui.bt_tres.clicked.connect(self.mover_menu)
+		self.ui.pushButton_13.clicked.connect(self.OtherObjects1)
+		self.ui.pushButton_14.clicked.connect(self.OtherObjects2)
+		self.ui.pushButton_15.clicked.connect(self.OtherObjects3)
+		self.ui.pushButton_16.clicked.connect(self.OtherObjects4)
+
+
+		#Cerrar programa si se hace click en icono de cerrar
+		self.ui.bt_cerrar.clicked.connect(lambda: self.close())
+
+		#menu lateral
+		self.ui.bt_menu.clicked.connect(self.mover_menu)
+		self.ui.bt_menu.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page))
+
+
+	#Ejecutar Counting Cars con diferentes imagenes
+	def CountingCars1(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CountingCars\TFG_CountingCars_Image1.py").read())
+	def CountingCars2(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CountingCars\TFG_CountingCars_Image2.py").read())
+	def CountingCars3(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CountingCars\TFG_CountingCars_Image3.py").read())
+	def CountingCars4(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CountingCars\TFG_CountingCars_Image4.py").read())
+
+
+	#Ejecutar Cars Detector con diferentes videos
+	def CarsDetector1(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CarsDetection\TFG_CarsDetection_Video1.py").read())
+	def CarsDetector2(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CarsDetection\TFG_CarsDetection_Video2.py").read())
+	def CarsDetector3(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CarsDetection\TFG_CarsDetection_Video3.py").read())
+	def CarsDetector4(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_CarsDetection\TFG_CarsDetection_Video4.py").read())
+
+
+	#Ejecutar Sign Detector con diferentes videos
+	def SignDetector1(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_SignDetection\TFG_SignDetection_Video1.py").read())
+	def SignDetector2(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_SignDetection\TFG_SignDetection_Video2.py").read())
+	def SignDetector3(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_SignDetection\TFG_SignDetection_Video3.py").read())
+	def SignDetector4(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_SignDetection\TFG_SignDetection_Video4.py").read())
+
+    #Ejecutar Other Objects con diferentes imagenes
+	def OtherObjects1(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_OtherObjects\TFG_OtherObjects_Image1.py").read())
+	def OtherObjects2(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_OtherObjects\TFG_OtherObjects_Image2.py").read())
+	def OtherObjects3(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_OtherObjects\TFG_OtherObjects_Image3.py").read())
+	def OtherObjects4(self):
+		exec(open(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Programming\TFG_OtherObjects\TFG_OtherObjects_Image4.py").read())
+
+
+	#Función para ocultar el menu de videos
+	def mover_menu(self):
+		if True:			
+			width = self.ui.frame_lateral.width()
+			normal = 0
+			if width==0:
+				extender = 300
+			else:
+				extender = normal
+			self.animacion = QPropertyAnimation(self.ui.frame_lateral, b'minimumWidth')
+			self.animacion.setDuration(300)
+			self.animacion.setStartValue(width)
+			self.animacion.setEndValue(extender)
+			self.animacion.setEasingCurve(QtCore.QEasingCurve.InOutQuart)	
+			self.animacion.start()
+#Finalizar proceso
+if __name__ == "__main__":
+     app = QtWidgets.QApplication(sys.argv)
+     mi_app = MiApp()
+     mi_app.show()
+     sys.exit(app.exec_())	
