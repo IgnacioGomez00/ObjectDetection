@@ -1,0 +1,447 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(400, 0))
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        #Barra superior y color
+        self.frame_superior = QtWidgets.QFrame(self.centralwidget)
+        self.frame_superior.setMinimumSize(QtCore.QSize(0, 40))
+        self.frame_superior.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.frame_superior.setStyleSheet("\n"
+        "QFrame{\n"
+        "background-color: #1F294C;\n"
+        "\n"
+        "}\n" 
+        "")
+        self.frame_superior.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_superior.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_superior.setObjectName("frame_superior")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_superior)
+        self.horizontalLayout_8.setContentsMargins(2, 0, 2, 0)
+        self.horizontalLayout_8.setSpacing(0)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+
+        #Configuración de la barra superior horizontal y del escritorio
+        self.bt_menu = QtWidgets.QPushButton(self.frame_superior)
+        self.bt_menu.setMinimumSize(QtCore.QSize(295, 0))
+        self.bt_menu.setMaximumSize(QtCore.QSize(295, 16777215))
+        self.bt_menu.setStyleSheet  ("QPushButton{\n"
+"background-color: #1F294C;\n"
+"font: 87 14pt \"Bierstadt\";\n"
+"color: white;\n"
+"border-radius:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: #02DAC0;\n"
+"font: 87 14pt \"Bierstadt\";\n"
+"\n"
+"}\n"
+"")
+
+        self.bt_menu.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("menu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_menu.setIcon(icon)
+        self.bt_menu.setIconSize(QtCore.QSize(32, 32))
+        self.bt_menu.setFlat(False)
+        self.bt_menu.setObjectName("bt_menu")
+        self.horizontalLayout_8.addWidget(self.bt_menu, 0, QtCore.Qt.AlignLeft)
+
+        #Botón para cerrar la ventana
+        self.bt_cerrar = QtWidgets.QPushButton(self.frame_superior)
+        self.bt_cerrar.setMaximumSize(QtCore.QSize(35, 16777215))
+        self.bt_cerrar.setStyleSheet("QPushButton{\n"
+"border:0px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"border:5px solid #1F294C;\n"
+"background-color:red;\n"
+"\n"
+"}\n"
+"")
+        self.bt_cerrar.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("cerrar-ventana.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_cerrar.setIcon(icon4)
+        self.bt_cerrar.setIconSize(QtCore.QSize(32, 32))
+        self.bt_cerrar.setObjectName("bt_cerrar")
+        self.horizontalLayout_8.addWidget(self.bt_cerrar, 0, QtCore.Qt.AlignRight)
+
+
+        #Configurar formato (tamaño, letra, fondo...) del menu lateral izquierdo
+        self.verticalLayout.addWidget(self.frame_superior)
+        self.frame_inferior = QtWidgets.QFrame(self.centralwidget)
+        self.frame_inferior.setStyleSheet("")
+        self.frame_inferior.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_inferior.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_inferior.setObjectName("frame_inferior")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_inferior)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.frame_lateral = QtWidgets.QFrame(self.frame_inferior)
+        self.frame_lateral.setMinimumSize(QtCore.QSize(300, 0))
+        self.frame_lateral.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.frame_lateral.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.frame_lateral.setAutoFillBackground(False)
+        self.frame_lateral.setStyleSheet("\n"
+"QFrame{\n"
+"background-color:#1F294C;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"background-color: #1F294C;\n"
+"border-top-left-radius: 20px;\n"
+"border-bottom-left-radius: 20px;\n"
+"\n"
+"font: 75 14pt \"Bierstadt\";\n"
+"color: white;\n"
+"    \n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: #02DAC0;\n"
+"border-top-left-radius: 20px;\n"
+"border-bottom-left-radius: 20px;\n"
+"\n"
+"font: 75 14pt \"Bierstadt\";\n"
+"}")    
+        self.frame_lateral.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_lateral.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.frame_lateral.setObjectName("frame_lateral")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_lateral)
+        self.verticalLayout_2.setContentsMargins(0, -1, 0, 9)
+        self.verticalLayout_2.setSpacing(20)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+
+        #Botón Counting Cars
+        self.bt_cero = QtWidgets.QPushButton(self.frame_lateral)
+        self.bt_cero.setMinimumSize(QtCore.QSize(0, 40))
+        self.bt_cero.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.bt_cero.setLayoutDirection(QtCore.Qt.LeftToRight)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("photo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_cero.setIcon(icon5)
+        self.bt_cero.setIconSize(QtCore.QSize(32, 32))
+        self.bt_cero.setObjectName("bt_cero")
+        self.verticalLayout_2.addWidget(self.bt_cero)
+
+        #Botón Cars Detection
+        self.bt_uno = QtWidgets.QPushButton(self.frame_lateral)
+        self.bt_uno.setMinimumSize(QtCore.QSize(0, 40))
+        self.bt_uno.setToolTipDuration(0)
+        self.bt_uno.setStyleSheet("")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("video.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_uno.setIcon(icon6)
+        self.bt_uno.setIconSize(QtCore.QSize(32, 32))
+        self.bt_uno.setObjectName("bt_uno")
+        self.verticalLayout_2.addWidget(self.bt_uno)
+
+        #Botón Sign Detection
+        self.bt_dos = QtWidgets.QPushButton(self.frame_lateral)
+        self.bt_dos.setMinimumSize(QtCore.QSize(0, 40))
+        self.bt_dos.setStyleSheet("")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap("video.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_dos.setIcon(icon7)
+        self.bt_dos.setIconSize(QtCore.QSize(32, 32))
+        self.bt_dos.setObjectName("bt_dos")
+        self.verticalLayout_2.addWidget(self.bt_dos)
+
+        #Botón Other Objects
+        self.bt_tres = QtWidgets.QPushButton(self.frame_lateral)
+        self.bt_tres.setMinimumSize(QtCore.QSize(0, 40))
+        self.bt_tres.setStyleSheet("")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap("photo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bt_tres.setIcon(icon8)
+        self.bt_tres.setIconSize(QtCore.QSize(32, 32))
+        self.bt_tres.setObjectName("bt_dos")
+        self.verticalLayout_2.addWidget(self.bt_tres)
+
+
+        #Nombre del autor en la zona inferior del menu
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem1)
+        self.label_2 = QtWidgets.QLabel(self.frame_lateral)
+        self.label_2.setStyleSheet("font: italic 16pt \"Vivaldi\";\n"
+        "color: white;\n")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_2.addWidget(self.label_2)
+
+#------------- Visualización de la interfaz gráfica -------------
+
+        self.horizontalLayout.addWidget(self.frame_lateral, 0, QtCore.Qt.AlignLeft)
+        self.frame_contenedor = QtWidgets.QFrame(self.frame_inferior)
+        self.frame_contenedor.setStyleSheet("")
+        self.frame_contenedor.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_contenedor.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_contenedor.setLineWidth(1)
+        self.frame_contenedor.setObjectName("frame_contenedor")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_contenedor)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.stackedWidget = QtWidgets.QStackedWidget(self.frame_contenedor)
+        self.stackedWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.stackedWidget.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.stackedWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.stackedWidget.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.stackedWidget.setLineWidth(0)
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.page)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.label = QtWidgets.QLabel(self.page)
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("fondo.png"))
+        self.label.setScaledContents(False)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setIndent(0)
+        self.label.setObjectName("label")
+        self.verticalLayout_9.addWidget(self.label)
+        self.stackedWidget.addWidget(self.page)
+        self.verticalLayout_3.addWidget(self.stackedWidget)
+        self.horizontalLayout.addWidget(self.frame_contenedor)
+        self.verticalLayout.addWidget(self.frame_inferior)
+        MainWindow.setCentralWidget(self.centralwidget)
+
+
+
+#------------- Crear páginas dentro de cada botón -------------
+        #Click en primer boton 
+
+        self.page_uno = QtWidgets.QWidget()
+        self.page_uno.setObjectName("page_uno")
+        self.pushButton = QtWidgets.QPushButton(self.page_uno)
+        self.pushButton.setGeometry(QtCore.QRect(140, 30, 93, 28))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.page_uno)
+        self.pushButton_2.setGeometry(QtCore.QRect(560, 30, 93, 28))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.page_uno)
+        self.pushButton_3.setGeometry(QtCore.QRect(140, 310, 93, 28))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_4 = QtWidgets.QPushButton(self.page_uno)
+        self.pushButton_4.setGeometry(QtCore.QRect(560, 310, 93, 28))
+        self.pushButton_4.setObjectName("pushButton_4")
+
+        self.labell = QtWidgets.QLabel(self.page_uno)
+        self.labell.setGeometry(QtCore.QRect(60, 70, 250, 191))
+        self.labell.setPixmap(QtGui.QPixmap("CountingCars_Image1.png"))
+        self.labell.setScaledContents(True)
+        self.labell.setObjectName("labell")
+
+        self.labell_2 = QtWidgets.QLabel(self.page_uno)
+        self.labell_2.setGeometry(QtCore.QRect(480, 70, 250, 191))
+        self.labell_2.setPixmap(QtGui.QPixmap("CountingCars_Image2.png"))
+        self.labell_2.setScaledContents(True)
+        self.labell_2.setObjectName("labell_2")
+
+        self.labell_3 = QtWidgets.QLabel(self.page_uno)
+        self.labell_3.setGeometry(QtCore.QRect(60, 350, 250, 191))
+        self.labell_3.setPixmap(QtGui.QPixmap("CountingCars_Image3.png"))
+        self.labell_3.setScaledContents(True)
+        self.labell_3.setObjectName("labell_3")
+
+        self.labell_4 = QtWidgets.QLabel(self.page_uno)
+        self.labell_4.setGeometry(QtCore.QRect(480, 350, 250, 191))
+        self.labell_4.setPixmap(QtGui.QPixmap("CountingCars_Image4.png"))
+        self.labell_4.setObjectName("labell_4")
+        self.labell_4.setScaledContents(True)
+        self.stackedWidget.addWidget(self.page_uno)
+        
+
+        #Click en segundo boton 
+
+        self.page_dos = QtWidgets.QWidget()
+        self.page_dos.setObjectName("page_dos")
+
+        self.pushButton_5 = QtWidgets.QPushButton(self.page_dos)
+        self.pushButton_5.setGeometry(QtCore.QRect(140, 30, 93, 28))
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_6 = QtWidgets.QPushButton(self.page_dos)
+        self.pushButton_6.setGeometry(QtCore.QRect(560, 30, 93, 28))
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.page_dos)
+        self.pushButton_7.setGeometry(QtCore.QRect(140, 310, 93, 28))
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.pushButton_8 = QtWidgets.QPushButton(self.page_dos)
+        self.pushButton_8.setGeometry(QtCore.QRect(560, 310, 93, 28))
+        self.pushButton_8.setObjectName("pushButton_8")
+
+        self.labell_5 = QtWidgets.QLabel(self.page_dos)
+        self.labell_5.setGeometry(QtCore.QRect(60, 70, 250, 191))
+        self.labell_5.setPixmap(QtGui.QPixmap("CarsDetection_Image1.png"))
+        self.labell_5.setScaledContents(True)
+        self.labell_5.setObjectName("labell_5")
+
+        self.labell_6 = QtWidgets.QLabel(self.page_dos)
+        self.labell_6.setGeometry(QtCore.QRect(480, 70, 250, 191))
+        self.labell_6.setPixmap(QtGui.QPixmap("CarsDetection_Image2.png"))
+        self.labell_6.setScaledContents(True)
+        self.labell_6.setObjectName("labell_6")
+
+        self.labell_7 = QtWidgets.QLabel(self.page_dos)
+        self.labell_7.setGeometry(QtCore.QRect(60, 350, 250, 191))
+        self.labell_7.setPixmap(QtGui.QPixmap("CarsDetection_Image3.png"))
+        self.labell_7.setScaledContents(True)
+        self.labell_7.setObjectName("labell_7")
+
+        self.labell_8 = QtWidgets.QLabel(self.page_dos)
+        self.labell_8.setGeometry(QtCore.QRect(480, 350, 250, 191))
+        self.labell_8.setPixmap(QtGui.QPixmap("CarsDetection_Image4.png"))
+        self.labell_8.setObjectName("labell_8")
+        self.labell_8.setScaledContents(True)
+        self.stackedWidget.addWidget(self.page_dos)
+
+
+        #Click en tercer boton 
+
+        self.page_tres = QtWidgets.QWidget()
+        self.page_tres.setObjectName("page_tres")
+
+        self.pushButton_9 = QtWidgets.QPushButton(self.page_tres)
+        self.pushButton_9.setGeometry(QtCore.QRect(140, 30, 93, 28))
+        self.pushButton_9.setObjectName("pushButton_9")
+        self.pushButton_10 = QtWidgets.QPushButton(self.page_tres)
+        self.pushButton_10.setGeometry(QtCore.QRect(560, 30, 93, 28))
+        self.pushButton_10.setObjectName("pushButton_10")
+        self.pushButton_11 = QtWidgets.QPushButton(self.page_tres)
+        self.pushButton_11.setGeometry(QtCore.QRect(140, 310, 93, 28))
+        self.pushButton_11.setObjectName("pushButton_11")
+        self.pushButton_12 = QtWidgets.QPushButton(self.page_tres)
+        self.pushButton_12.setGeometry(QtCore.QRect(560, 310, 93, 28))
+        self.pushButton_12.setObjectName("pushButton_12")
+
+        self.labell_9 = QtWidgets.QLabel(self.page_tres)
+        self.labell_9.setGeometry(QtCore.QRect(60, 70, 250, 191))
+        self.labell_9.setPixmap(QtGui.QPixmap("SignDetection_Image1.png"))
+        self.labell_9.setScaledContents(True)
+        self.labell_9.setObjectName("labell_9")
+
+        self.labell_10 = QtWidgets.QLabel(self.page_tres)
+        self.labell_10.setGeometry(QtCore.QRect(480, 70, 250, 191))
+        self.labell_10.setPixmap(QtGui.QPixmap("SignDetection_Image2.png"))
+        self.labell_10.setScaledContents(True)
+        self.labell_10.setObjectName("labell_10")
+
+        self.labell_11 = QtWidgets.QLabel(self.page_tres)
+        self.labell_11.setGeometry(QtCore.QRect(60, 350, 250, 191))
+        self.labell_11.setPixmap(QtGui.QPixmap("SignDetection_Image3.png"))
+        self.labell_11.setScaledContents(True)
+        self.labell_11.setObjectName("labell_11")
+
+        self.labell_12 = QtWidgets.QLabel(self.page_tres)
+        self.labell_12.setGeometry(QtCore.QRect(480, 350, 250, 191))
+        self.labell_12.setPixmap(QtGui.QPixmap("webcam.png"))
+        self.labell_12.setObjectName("labell_12")
+        self.labell_12.setScaledContents(True)
+        self.stackedWidget.addWidget(self.page_tres)
+
+
+        #Click en cuarto boton 
+
+        self.page_cuatro = QtWidgets.QWidget()
+        self.page_cuatro.setObjectName("page_cuatro")
+
+        self.pushButton_13 = QtWidgets.QPushButton(self.page_cuatro)
+        self.pushButton_13.setGeometry(QtCore.QRect(140, 30, 93, 28))
+        self.pushButton_13.setObjectName("pushButton_9")
+        self.pushButton_14 = QtWidgets.QPushButton(self.page_cuatro)
+        self.pushButton_14.setGeometry(QtCore.QRect(560, 30, 93, 28))
+        self.pushButton_14.setObjectName("pushButton_10")
+        self.pushButton_15 = QtWidgets.QPushButton(self.page_cuatro)
+        self.pushButton_15.setGeometry(QtCore.QRect(140, 310, 93, 28))
+        self.pushButton_15.setObjectName("pushButton_11")
+        self.pushButton_16 = QtWidgets.QPushButton(self.page_cuatro)
+        self.pushButton_16.setGeometry(QtCore.QRect(560, 310, 93, 28))
+        self.pushButton_16.setObjectName("pushButton_12")
+
+        self.labell_13 = QtWidgets.QLabel(self.page_cuatro)
+        self.labell_13.setGeometry(QtCore.QRect(60, 70, 250, 191))
+        self.labell_13.setPixmap(QtGui.QPixmap("OtherObjects_Image1.png"))
+        self.labell_13.setScaledContents(True)
+        self.labell_13.setObjectName("labell_13")
+
+        self.labell_14 = QtWidgets.QLabel(self.page_cuatro)
+        self.labell_14.setGeometry(QtCore.QRect(480, 70, 250, 191))
+        self.labell_14.setPixmap(QtGui.QPixmap("OtherObjects_Image2.png"))
+        self.labell_14.setScaledContents(True)
+        self.labell_14.setObjectName("labell_14")
+
+        self.labell_15 = QtWidgets.QLabel(self.page_cuatro)
+        self.labell_15.setGeometry(QtCore.QRect(60, 350, 250, 191))
+        self.labell_15.setPixmap(QtGui.QPixmap("OtherObjects_Image3.png"))
+        self.labell_15.setScaledContents(True)
+        self.labell_15.setObjectName("labell_15")
+
+        self.labell_16 = QtWidgets.QLabel(self.page_cuatro)
+        self.labell_16.setGeometry(QtCore.QRect(480, 350, 250, 191))
+        self.labell_16.setPixmap(QtGui.QPixmap("OtherObjects_Image4.png"))
+        self.labell_16.setObjectName("labell_16")
+        self.labell_16.setScaledContents(True)
+        self.stackedWidget.addWidget(self.page_cuatro)
+
+
+
+        #Se asocia cada botón del menu con un nombre
+        self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(0)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "  Self Driving Car "))
+        self.bt_menu.setText(_translate("MainWindow", "    Desktop                 "))
+        self.bt_cero.setText(_translate("MainWindow", "    Counting Cars          "))
+        self.bt_uno.setText(_translate("MainWindow", "    Cars Detector          "))
+        self.bt_dos.setText(_translate("MainWindow", "    Sign Detector          "))
+        self.bt_tres.setText(_translate("MainWindow", "    Other Objects          "))
+        self.label_2.setText(_translate("MainWindow", "Ignacio Gómez "))
+        self.pushButton.setText(_translate("MainWindow", "Image 1"))
+        self.pushButton_2.setText(_translate("MainWindow", "Image 2"))
+        self.pushButton_3.setText(_translate("MainWindow", "Image 3"))
+        self.pushButton_4.setText(_translate("MainWindow", "Image 4"))
+        self.pushButton_5.setText(_translate("MainWindow", "Video 1"))
+        self.pushButton_6.setText(_translate("MainWindow", "Video 2"))
+        self.pushButton_7.setText(_translate("MainWindow", "Video 3"))
+        self.pushButton_8.setText(_translate("MainWindow", "Video 4"))
+        self.pushButton_9.setText(_translate("MainWindow", "Video 1"))
+        self.pushButton_10.setText(_translate("MainWindow", "Video 2"))
+        self.pushButton_11.setText(_translate("MainWindow", "Video 3"))
+        self.pushButton_12.setText(_translate("MainWindow", "Webcam"))
+        self.pushButton_13.setText(_translate("MainWindow", "Image 1"))
+        self.pushButton_14.setText(_translate("MainWindow", "Image 2"))
+        self.pushButton_15.setText(_translate("MainWindow", "Image 3"))
+        self.pushButton_16.setText(_translate("MainWindow", "Image 4"))
+
+#Finalizar proceso
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
