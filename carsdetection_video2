@@ -1,0 +1,42 @@
+import cv2
+
+#Cargar DNN model y pesos
+prototxt = r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\dnn_object_detection\model\MobileNetSSD_deploy.prototxt.txt"
+model = r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\dnn_object_detection\model\MobileNetSSD_deploy.caffemodel"
+
+#Cargar el modelo
+net = cv2.dnn.readNetFromCaffe(prototxt, model)
+
+#Lectura de imagen
+cap = cv2.VideoCapture(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\videos\CarsDetection_Video2.avi")
+
+while True:
+     ret, frame, = cap.read()
+     if ret == False:
+          break
+     height, width, _ = frame.shape
+     frame_resized = cv2.resize(frame, (300, 300))
+
+     # Crear una blob
+     blob = cv2.dnn.blobFromImage(frame_resized, 0.007843, (300, 300), (127.5, 127.5, 127.5))
+
+     #Detección de clases y precisión
+     net.setInput(blob)
+     detections = net.forward()
+
+     for detection in detections[0][0]:
+          if detection[2] > 0.45:
+               print("Accuracy Detection: ", detection[2])
+               box = detection[3:7] * [width, height, width, height]
+               x_start, y_start, x_end, y_end = int(box[0]), int(box[1]), int(box[2]), int(box[3])
+               cv2.rectangle(frame, (x_start, y_start), (x_end, y_end), (0, 255, 0), 2)
+               cv2.putText(frame, "Conf: {:.2f}".format(detection[2] * 100), (x_start, y_start - 5), 1, 1.2, (255, 0, 0), 2)
+               cv2.putText(frame, 'cars', (x_start, y_start - 25), 1, 1.2, (0, 255, 255), 2)
+     
+     cv2.imshow("Video with cars", frame)
+     
+     #Finalización de proceso
+     if cv2.waitKey(30) == 27:
+          break
+cap.release()
+cv2.destroyAllWindows()
