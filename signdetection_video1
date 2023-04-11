@@ -1,0 +1,44 @@
+#Importar librerias necesarias
+import cv2
+
+#Video de muestreo .avi
+video_entrada = (r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\videos\Video1. Stop - Caution.avi")
+
+#Lectura de imagen y selección de archivos Haar 
+cap = cv2.VideoCapture(video_entrada)
+
+#Proporcionan archivos pre - entrenados de las clases a detectar
+stop_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\stop.xml")
+caution_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\caution.xml")
+
+while cap.isOpened(): 
+
+	#Definir variables y leer el primer frame
+	ret, frame = cap.read()
+
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	color_green = (0,255,0) 
+	color_yellow = (0,255,255)
+
+	#Modelo de Haar Cascade
+	stop_sign_scaled = stop_sign.detectMultiScale(gray, 1.2, minNeighbors=10, minSize=(30, 30))
+	caution_sign_scaled = caution_sign.detectMultiScale(gray, 1.1, minNeighbors=3, minSize=(30, 30))
+
+	#Dibuja rectangulo en las coordenadas del objeto y texto encima del rectangulo identificando su clase
+	for (x,y,w,h) in stop_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "stop", (x,y-5), 1, 1.2, color_yellow, 2)
+
+	for (x,y,w,h) in caution_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "caution", (x,y-5), 1, 1.2, color_yellow, 2)
+
+	#Imagen por pantalla
+	cv2.imshow("Video Traffic Sign", frame)
+
+	#Finalización del proceso
+	if cv2.waitKey(30) == 27:
+		break
+
+cap.release()
+cv2.destroyAllWindows()
