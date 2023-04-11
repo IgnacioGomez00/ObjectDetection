@@ -1,0 +1,67 @@
+#Importar librerias necesarias
+import cv2
+
+
+#Video de muestreo .avi
+video_entrada = (r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\videos\Video2. Right - Left.avi")
+
+
+#Lectura de imagen y selección de archivos Haar 
+cap = cv2.VideoCapture(video_entrada)
+#fgbg = cv2.createBackgroundSubtractorMOG2()
+
+#Proporcionan archivos pre - entrenados de las clases a detectar
+noturnleft_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\no_turn_left.xml")
+noturnright_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\no_turn_right.xml")
+right_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\right.xml")
+left_sign = cv2.CascadeClassifier(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\XMLs\left.xml")
+
+while cap.isOpened(): 
+
+
+	#Definir variables y leer el primer frame
+	ret, frame = cap.read()
+	#fgbg.apply(frame)
+
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	color_green = (0,255,0) 
+	color_yellow = (0,255,255)
+
+	#Modelo de Haar Cascade
+
+	noturnleft_sign_scaled = noturnleft_sign.detectMultiScale(gray, 1.1, minNeighbors=2, minSize=(30, 30) )
+	noturnright_sign_scaled = noturnright_sign.detectMultiScale(gray, 1.1, minNeighbors=4, minSize=(30, 30) )
+	right_sign_scaled = right_sign.detectMultiScale(gray, 1.1, minNeighbors=2, minSize=(30, 30) )
+	left_sign_scaled = left_sign.detectMultiScale(gray, 1.1, 2, minSize=(30, 30))
+
+
+	#Dibuja rectangulo en las coordenadas del objeto y texto encima del rectangulo identificando su clase
+
+
+	for (x,y,w,h) in noturnleft_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "no turn left", (x,y-5), 1, 1.2, color_yellow, 2)
+	
+	for (x,y,w,h) in noturnright_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "no turn right", (x,y-5), 1, 1.2, color_yellow, 2)
+
+	for (x,y,w,h) in right_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "right", (x,y-5), 1, 1.2, color_yellow, 2)
+
+	for (x,y,w,h) in left_sign_scaled:
+		cv2.rectangle(frame, (x,y), (x+w, y+h), color_green, 2)
+		cv2.putText(frame, "left", (x,y-5), 1, 1.2, color_yellow, 2)		
+
+	#Imagen por pantalla
+	#cv2.imshow('BackgroundSubtractor',fgbg)
+	#cv2.imshow('Gray',gray)
+	cv2.imshow("Video Traffic Sign", frame)
+
+	#Finalización del proceso
+	if cv2.waitKey(30) == 27:
+		break
+
+cap.release()
+cv2.destroyAllWindows()
