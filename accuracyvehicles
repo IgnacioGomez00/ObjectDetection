@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Lectura de archivo csv con los datos de precision
+df = pd.read_csv(r"C:\Users\ignac\OneDrive\Escritorio\Python\TFG\Gráfica de Precisión de Vehículos en Movimiento.csv")
+
+# Convertir los datos de la columna 'Datos de Precision' a una matriz NumPy
+real_labels = np.array(df['Datos de Precision'])
+
+# Calcular la media de los datos
+mean = np.mean(real_labels)
+
+# Configuración del gráfico
+fig, ax = plt.subplots()
+ax.plot(real_labels)
+
+# Añadir una línea horizontal roja que indique la media de los datos
+ax.axhline(y=mean, color='red', linestyle='--')
+
+# Etiquetar los ejes y el título del gráfico
+ax.set(xlabel='Muestras', ylabel='Precisión',
+       title='Precisión del sistema de detección de vehículos en movimiento')
+
+# Mostrar el gráfico
+plt.show()
+
+fig, ax = plt.subplots()
+ax.hist(real_labels, bins=10, edgecolor='black')
+ax.set_xlabel('Precisión')
+ax.set_ylabel('Muestras')
+ax.set_title('Histograma de la precisión')
+
+# Mostrar el gráfico
+plt.show()
